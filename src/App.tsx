@@ -1,6 +1,6 @@
 import './App.css'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import AES from 'crypto-js/aes'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 type TPeers = {
   name: string
@@ -71,7 +71,7 @@ function App() {
   const initSocket = useCallback(() => {
     if (!socketRef.current || socketRef.current?.readyState > 1) {
       try {
-        socketRef.current = new WebSocket('wss://localhost:8100/websockets')
+        socketRef.current = new WebSocket('ws://localhost:8100/websockets')
         if (socketRef.current) setMessageEvent()
       } catch (Error) {
         console.error('WebSocket not available')
@@ -130,8 +130,10 @@ function App() {
           }}
         >
           <label htmlFor='nick'>Jméno: </label>
-          <input name='nick' type='text' ref={inputRef} />
-          <button type='submit'>použít</button>
+          <input name='nick' type='text' ref={inputRef} data-testid='input' />
+          <button type='submit' data-testid='button'>
+            použít
+          </button>
         </form>
       )}
       {peers.map((one, idx) => (

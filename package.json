@@ -14,7 +14,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "build-no-map": "GENERATE_SOURCEMAP=false craco build",
-    "test": "react-scripts test",
+    "test": "npx playwright test ./src/App.spec.ts",
     "eject": "react-scripts eject",
     "l": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint": "eslint \"{src,scripts,cypress}/**/*.{js,ts,tsx}\" --cache",
@@ -40,6 +40,7 @@
   },
   "devDependencies": {
     "@craco/craco": "^7.0.0",
+    "@playwright/test": "^1.27.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
